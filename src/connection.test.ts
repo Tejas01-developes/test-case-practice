@@ -18,8 +18,10 @@ afterEach(()=>{
 })
 
 it("shouldconnect to the database",async()=>{
-    (mongoose.connect as jest.Mock).mockResolvedValueOnce("mongodb://fake:27017")
+    // (mongoose.connect as jest.Mock).mockResolvedValueOnce("mongodb://fake:27017")
+    (mongoose.connect as jest.Mock).mockResolvedValueOnce("true")
     await dbconnect.connect();
+    // expect(mongoose.connect).toHaveBeenCalled()
     expect(mongoose.connect).toHaveBeenCalled()
     expect(consolespy).toHaveBeenCalledWith("database connected")
 })
