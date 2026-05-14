@@ -37,7 +37,7 @@ const compare=await bcrypt.compare(password,result.password);
 if(!compare){
     return res.status(400).json({message:"password is incorrect"})
 }
-return res.status(200).json({mesaage:"login successfull"})
+return res.status(200).json({message:"login successfull"})
 }catch(err){
     return res.status(400).json({message:"login failed"})
 }
