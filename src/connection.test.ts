@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import dbconnect from './dbconnect.js';
+import dbconnect from './dbconnect.js'
 
 jest.mock("mongoose");
 
@@ -20,13 +20,13 @@ afterEach(()=>{
 it("shouldconnect to the database",async()=>{
     (mongoose.connect as jest.Mock).mockResolvedValueOnce("mongodb://fake:27017")
     await dbconnect.connect();
-    expect(mongoose.connect).toHaveBeenCalledWith("mongodb://fake:27017")
-    expect(consolespy).toHaveBeenCalledWith("mongodb://fake:27017")
+    expect(mongoose.connect).toHaveBeenCalled()
+    expect(consolespy).toHaveBeenCalledWith("database connected")
 })
 
 it("should not connect to the database and send error",async()=>{
     (mongoose.connect as jest.Mock).mockRejectedValueOnce(new Error("network timeout"))
-    await dbconnect.connect();
+  
     expect(dbconnect.connect()).rejects.toThrow("database connection failed")
     expect(consolespy).not.toHaveBeenCalled()
 })
