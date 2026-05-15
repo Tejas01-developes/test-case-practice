@@ -13,7 +13,7 @@ export const accessfilter=(req:customreq,resp:Response,next:NextFunction)=>{
         return resp.status(400).json({message:"access token is not there"})
     }
     try{
-    const decode=jwt.verify(access,process.env.ACCESS_SECRET as string) as JwtPayload
+    const decode=jwt.verify(access,process.env.ACCESS_KEY as string) as JwtPayload
 
    req.id=decode.id
     next()
